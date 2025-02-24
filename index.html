@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Interactif</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: radial-gradient(circle, rgba(159, 0, 232, 1) 0%, rgba(9, 9, 121, 1) 75%, rgba(2, 0, 36, 1) 100%);
+            color: #ffffff;
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+        }
+
+        .final .question-container,
+        .final .navigation {
+            filter: blur(2rem);
+        }
+
+        #question-container,
+        #navigation {
+            display: none;
+        }
+
+        .choices {
+            text-align: center;
+        }
+
+        #showChoices.hidden {
+            opacity: 0;
+        }
+
+        #showChoices {
+            border: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        /* Intro */
+        .intro-container {
+            text-align: center;
+            width: 100vw;
+            height: 100vh;
+            background-image: url(stars.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: grid;
+            place-content: center;
+        }
+
+        .intro-container h1 {
+            font-size: 20rem;
+            margin: 0;
+            padding: 0;
+            animation: titleh1 1s infinite;
+        }
+
+        .intro-container .go {
+            border-radius: 10rem;
+            background-color: white;
+            font-weight: bold;
+            border: 0;
+            color: black;
+            padding: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            color: rgba(159, 0, 232, 1);
+            place-self: center;
+            z-index: 1337;
+        }
+
+        .question-container {
+            padding: 30px;
+            /* margin-bottom: 20px; */
+            position: relative;
+            width: 50rem;
+            max-width: 80vw;
+        }
+
+        #question-number {
+            color: #00ff95;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #question-text {
+            font-size: 2rem;
+            margin: 20px 0 30px 0;
+            line-height: 1.3;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option {
+            padding: 15px 25px;
+            background-color: rgba(2, 0, 36, 0.5);
+            border: 3px solid rgba(0, 0, 0, 0.25);
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .option:hover {
+            background-color: rgba(35, 1, 58, 0.83);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .option.correct {
+            background-color: #00925f;
+            border-color: #00ff95;
+            color: white;
+            animation: pulse 1s ease;
+        }
+
+        .option.incorrect {
+            background-color: #93304a;
+            border-color: #ff477e;
+            color: white;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .nav-button {
+            padding: 12px 25px;
+            background: rgba(0, 0, 0, 0.35);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 76, 245, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #2a2a4a;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            scale: 2;
+            transform: rotate(-5deg) translateX(-25%);
+            transition: top 0.5s ease, scale 1s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .feedback.hidden {
+            top: -50%;
+            opacity: 0;
+            scale: 1;
+        }
+
+        .options.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .explanation {
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        /* Nouveaux styles pour le score */
+        .score-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #5534A5, #6B4CF5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-score {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 3rem;
+            margin-top: 20px;
+            position: absolute;
+            place-self: center;
+            backdrop-filter: blur(10px);
+            /* transform: scale(2); */
+            animation: fadeZoom 1s ease-out forwards;
+            display: none;
+        }
+
+        .final-score h2 {
+            color: #00ff95;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .final-score p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        @keyframes titleh1 {
+            0% {
+                transform: scale(1) rotate(-5deg);
+            }
+
+            50% {
+                transform: scale(1.3) rotate(5deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(-5deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="intro-container">
+        <h1>Quiz !</h1>
+        <button id="go" class="go">Go !</button>
+    </div>
+
+    <div id="question-container" class="question-container">
+        <div class="score-container">
+            Score: <span id="current-score">0</span>/<span id="total-questions">0</span>
+        </div>
+        <h2 id="question-number"></h2>
+        <p id="question-text"></p>
+        <div id="options" class="options"></div>
+        <div id="choices" class="choices">
+            <button id="showChoices">Montrer les choix 👀</button>
+        </div>
+        <div id="feedback" class="feedback hidden"></div>
+        <div id="explanation" class="explanation"></div>
+    </div>
+    <div id="final-score" class="final-score">
+        <h2>🎉 Quiz Terminé ! 🎉</h2>
+        <p>Score final: <span id="final-score-value">0</span>/<span id="final-total-questions">0</span></p>
+        <!-- <p>Pourcentage de réussite: <span id="success-rate">0</span>%</p> -->
+    </div>
+    <div id="navigation" class="navigation">
+        <button id="prev-button" class="nav-button">Question précédente</button>
+        <button id="next-button" class="nav-button">Question suivante</button>
+    </div>
+
+    <script>
+        // Function précédentes et setup du confetti
+        function fireConfetti() {
+            const duration = 3000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#00ff95', '#0aff', '#6B4CF5', '#ff477e', '#fff'] };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                }));
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                }));
+            }, 250);
+        }
+
+        const quizData = {
+            questions: [
+                {
+                    "question": "Quel est le rôle principal du W3C ?",
+                    "options": [
+                        "Réguler l'accès à Internet",
+                        "Définir des standards pour le web",
+                        "Créer des navigateurs web",
+                        "Contrôler les noms de domaine"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit des standards pour le web."
+                },
+                {
+                    "question": "Quel organisme est chargé de gérer les noms de domaine sur Internet ?",
+                    "options": [
+                        "W3C",
+                        "ICANN",
+                        "IETF",
+                        "ISO"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "L'ICANN (Internet Corporation for Assigned Names and Numbers) est l'organisme chargé de gérer les noms de domaine sur Internet."
+                },
+                {
+                    "question": "Qui développe le DOM (Document Object Model) ?",
+                    "options": [
+                        "Mozilla",
+                        "WhatWG",
+                        "W3C",
+                        "DOM Consortium"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Le DOM (Document Object Model) a été développé par le WhatWG (Web Hypertext Application Technology Working Group)"
+                },
+                {
+                    "question": "Quelle organisation définit les standards pour les feuilles de style CSS ?",
+                    "options": [
+                        "W3C",
+                        "IETF",
+                        "ICANN",
+                        "ISO"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit les standards pour les feuilles de style CSS."
+                },
+                {
+                    "question": "Qui travaille sur la sécurité des applications web ?",
+                    "options": [
+                        "La SEC",
+                        "OWASP",
+                        "ANSI (American National Standards Institute)",
+                        "La NSA"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "OWASP (Open Web Application Security Project) – Organisation qui travaille sur la sécurité des applications web notamment avec le Top 10 des vulnérabilités."
+                },
+                {
+                    "question": "Qui maintient le standard JavaScript ?",
+                    "options": [
+                        "WhatWG",
+                        "W3C",
+                        "ECMA",
+                        "Mosaic"
+                    ],
+                    "correctAnswer": 2,
+                    "explanation": "L'ECMA (European Computer Manufacturers Association) est l'organisme qui maintient le standard JavaScript."
+                },
+                {
+                    "question": "Qui a inventé JSON ?",
+                    "options": [
+                        "Jean-Olivier Sébastien Nathan",
+                        "Michael Douglas",
+                        "Douglas Reynholm",
+                        "Douglas Crockford"
+                    ],
+                    "correctAnswer": 3,
+                    "explanation": "JSON (JavaScript Object Notation) a été inventé par Douglas Crockford au début des années 2000."
+                },
+                {
+                    "question": "Qui développe les standards techniques HTTP, TLS, IP, SMTP, DNS ?",
+                    "options": [
+                        "W3C",
+                        "IETF",
+                        "ECMA",
+                        "ISO"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "L'IETF (Internet Engineering Task Force) est l'organisme qui développe les standards techniques pour Internet"
+                },
+                {
+                    "question": "Qui a fondé le W3C ?",
+                    "options": [
+                        "Steve Jobs",
+                        "Chuck Norris",
+                        "Kevin McCulkin",
+                        "Tim Berners-Lee"
+                    ],
+                    "correctAnswer": 3,
+                    "explanation": "Physicien et informaticien britannique, principal inventeur du World Wide Web alors qu'il travaillait à l'Organisation européenne pour la recherche nucléaire au tournant des années 1990."
+                },
+                {
+                    "question": "Sous quelle forme sont publiés les standards de l'IETF ?",
+                    "options": [
+                        "RFC",
+                        "Markdown",
+                        "Word",
+                        "Panama Papers"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "Les standards de l'IETF sont publiés sous forme de RFC (Request for Comments)"
+                },
+                {
+                    "question": "Qui développe l'API Fetch ?",
+                    "options": [
+                        "Mozilla",
+                        "WhatWG",
+                        "Network Working Group",
+                        "Les amis de la Fecht"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "L'API Fetch a été développée par le WhatWG (Web Hypertext Application Technology Working Group)"
+                },
+                {
+                    "question": "Qui alloue les blocs d'adresses IP ?",
+                    "options": [
+                        "IANA",
+                        "R.I.P.",
+                        "IP Allocators Inc.",
+                        "IPv6 Bureau"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "IANA (Internet Assigned Numbers Authority) – Responsable de la gestion des adresses IP, des numéros de ports et des paramètres de protocole."
+                },
+                {
+                    "question": "Qui régit les emojis 😺 ?",
+                    "options": [
+                        "NTT Docomo",
+                        "Emo Group",
+                        "Unicode Consortium",
+                        "Smiley Inc."
+                    ],
+                    "correctAnswer": 2,
+                    "explanation": "Les emojis sont régis par le Unicode Consortium, qui définit les standards pour les caractères Unicode."
+                },
+                {
+                    "question": "Qui maintient et développe le format WebP ?",
+                    "options": [
+                        "WebPicture Consortium",
+                        "W3C",
+                        "JPEG Committee",
+                        "Google"
+                    ],
+                    "correctAnswer": 3,
+                    "explanation": "Google est l'entreprise qui a développé le format WebP, un format d'image plus léger et plus performant que le JPEG."
+                },
+                {
+                    "question": "Qui maintient et développe le format AVIF ?",
+                    "options": [
+                        "AV1 Association Working Group (AWS, Facebook, Disney)",
+                        "AOMedia (Google, Mozilla, Microsoft, Netflix, Amazon...)",
+                        "MPEG L.A. (FBI, CIA, NSA)",
+                        "Oracle"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "AOMedia (Alliance for Open Media) est le consortium qui maintient et développe le format AVIF, un format d'image basé sur le codec AV1."
+                },
+                {
+                    "question": "Quelle est la mission principale de l'Afnic ?",
+                    "options": [
+                        "Gérer l’attribution des adresses IP en France",
+                        "Développer des logiciels open-source",
+                        "Administrer et gérer les noms de domaine en .fr",
+                        "Réguler les télécommunications en France"
+                    ],
+                    "correctAnswer": 2,
+                    "explanation": "L'Afnic (Association Française pour le Nommage Internet en Coopération) est l'organisme chargé de l'administration et de la gestion des noms de domaine en .fr."
+                },
+                {
+                    "question": "Qui édite les WCAG ?",
+                    "options": [
+                        "La WAI (Web Accessibility Initiative)",
+                        "L'AAA (American Association of Accessibility)",
+                        "Le WhatWG",
+                        "Le RGAA"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "Les spécifications WCAG (Web Content Accessibility Guidelines) sont éditées par le W3C (World Wide Web Consortium), à travers son groupe de travail WAI (Web Accessibility Initiative)."
+                },
+                {
+                    "question": "Quels organismes développent des normes pour le cryptage et la sécurité des communications sur Internet ?",
+                    "options": [
+                        "HTTPS Working Group et IEEE",
+                        "ISOsec et W3C",
+                        "CryptAlliance (Google, Facebook, Amazon et NSA)",
+                        "IETF et NIST"
+                    ],
+                    "correctAnswer": 3,
+                    "explanation": "L'IETF (Internet Engineering Task Force) et le NIST (National Institute of Standards and Technology) sont des organismes qui développent des normes pour le cryptage et la sécurité des communications sur Internet."
+                },
+                {
+                    "question": "Qui a inventé TCP/IP ?",
+                    "options": [
+                        "Tim Cerners-Pee et Isabelle Prank",
+                        "Brendan Eich",
+                        "Vinton Cerf et Robert Kahn",
+                        "Personne, c'est venu tout seul"
+                    ],
+                    "correctAnswer": 2,
+                    "explanation": "Vinton Cerf et Robert Kahn dans les années 1970 ont conçu ce protocole pour permettre l'interconnexion de réseaux hétérogènes, posant ainsi les bases d'Internet."
+                },
+                {
+                    "question": "Qui établit les standards internationaux des télécommunications 4G/5G, VoIP, fibre optique ?",
+                    "options": [
+                        "C.E.R.N. (Council of Electronic Research Network)",
+                        "I.T.U. (Union Internationale des Télécommunications)",
+                        "P.R.O.U.T. (Protocole Réseau d'Organisation Universelle des Télécommunications)",
+                        "P.T.T. (Postes, Télégraphes et Téléphones)"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "L'Union Internationale des Télécommunications (ITU) est une agence spécialisée des Nations Unies qui coordonne les télécommunications internationales."
+                },
+                {
+                    "question": "Qui développe les standards Ethernet et WiFi ?",
+                    "options": [
+                        "IEEE",
+                        "IETF Network Group",
+                        "ECMA",
+                        "NCSA"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "L'IEEE (Institute of Electrical and Electronics Engineers) est l'organisme qui développe les standards Ethernet et WiFi."
+                },
+                {
+                    "question": "Quel protocole permet la résolution des noms de domaine en adresses IP ?",
+                    "options": [
+                        "DNS",
+                        "FTP",
+                        "DHCP",
+                        "SNMP"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "Le protocole DNS (Domain Name System) permet la résolution des noms de domaine en adresses IP."
+                },
+                {
+                    "question": "Quel protocole est utilisé pour l'envoi d'e-mails ?",
+                    "options": [
+                        "HTTP",
+                        "SMTP",
+                        "DNS",
+                        "IMAP"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Le protocole SMTP (Simple Mail Transfer Protocol) est utilisé pour l'envoi d'e-mails."
+                },
+                {
+                    "question": "Quelle est la principale différence entre TCP et UDP ?",
+                    "options": [
+                        "TCP est orienté connexion, UDP ne l'est pas",
+                        "UDP est plus sécurisé que TCP",
+                        "TCP est utilisé pour la diffusion en continu, UDP non",
+                        "UDP garantit la livraison des paquets alors que TCP ne le fait pas"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "La principale différence entre TCP (Transmission Control Protocol) et UDP (User Datagram Protocol) est que TCP est orienté connexion, ce qui signifie qu'il garantit la livraison des paquets dans l'ordre et sans erreur, tandis qu'UDP ne le fait pas."
+                }
+            ]
+        };
+
+        let currentQuestion = -1;
+        let answeredQuestions = new Set();
+        let score = 0;
+
+        function updateScore() {
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('total-questions').textContent = quizData.questions.length;
+        }
+
+        function showFinalScore() {
+            const finalScoreDiv = document.getElementById('final-score');
+            const successRate = (score / quizData.questions.length) * 100;
+
+            document.getElementById('final-score-value').textContent = score;
+            document.getElementById('final-total-questions').textContent = quizData.questions.length;
+            // document.getElementById('success-rate').textContent = successRate.toFixed(1);
+            document.body.classList.add('final');
+
+            finalScoreDiv.style.display = 'block';
+
+            if (successRate === 100) {
+                fireConfetti();
+            }
+        }
+
+        function displayQuestion() {
+            const question = quizData.questions[currentQuestion];
+            document.getElementById('question-number').textContent = `Question ${currentQuestion + 1}/${quizData.questions.length}`;
+            document.getElementById('question-text').textContent = question.question;
+
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            optionsContainer.classList.add('hidden');
+
+            document.getElementById('showChoices').classList.remove('hidden');
+
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                button.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            const feedback = document.getElementById('feedback');
+            const explanation = document.getElementById('explanation');
+            feedback.classList.add('hidden');
+            explanation.style.display = 'none';
+
+            // Cacher le score final lors du passage entre les questions
+            document.getElementById('final-score').style.display = 'none';
+
+            updateNavigationButtons();
+            updateScore();
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (answeredQuestions.has(currentQuestion)) return;
+
+            const question = quizData.questions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            const feedback = document.getElementById('feedback');
+            const explanation = document.getElementById('explanation');
+            const isCorrect = selectedIndex === question.correctAnswer;
+
+            if (isCorrect) {
+                score++;
+                updateScore();
+            }
+
+            options[selectedIndex].classList.add(
+                isCorrect ? 'correct' : 'incorrect'
+            );
+            options[question.correctAnswer].classList.add('correct');
+
+            // Afficher le feedback
+            feedback.classList.remove('hidden');
+            feedback.style.backgroundColor = isCorrect ? '#00925f' : '#93304a';
+            feedback.textContent = isCorrect ?
+                '🎉 Bonne réponse ! 🎉' :
+                '❌ Mauvaise réponse' //  La bonne réponse était : ' + question.options[question.correctAnswer];
+
+            // Afficher l'explication
+            explanation.style.display = 'block';
+            explanation.textContent = question.explanation;
+
+            if (isCorrect) {
+                fireConfetti();
+            }
+
+            answeredQuestions.add(currentQuestion);
+
+            // Afficher le score final si c'est la dernière question
+            if (answeredQuestions.size === quizData.questions.length) {
+                setTimeout(showFinalScore, 2000);
+            }
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prev-button').disabled = currentQuestion === 0;
+            document.getElementById('next-button').disabled = currentQuestion === quizData.questions.length - 1;
+        }
+
+        // Bouton démarrage
+        document.getElementById('go').onclick = () => {
+            currentQuestion = 0;
+            document.querySelector('#question-container').style.display = 'block';
+            document.querySelector('#navigation').style.display = 'flex';
+            document.querySelector('.intro-container').style.display = 'none';
+            // Initialiser le quiz
+            displayQuestion();
+        }
+
+        // Bouton montrer les choix
+        document.getElementById('showChoices').onclick = () => {
+            document.querySelector('#options').classList.remove('hidden');
+            document.getElementById('showChoices').classList.add('hidden');
+        }
+
+        document.getElementById('prev-button').onclick = () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        };
+
+        document.getElementById('next-button').onclick = () => {
+            if (currentQuestion < quizData.questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        };
+
+    </script>
+</body>
+
+</html>
