@@ -1,0 +1,57 @@
+{
+    "questions": [
+        {
+            "question": "Comment peut-on créer des cookies ?",
+            "options": [
+                "En front avec JavaScript",
+                "En back avec PHP, Java, Python, etc.",
+                "En front et en back",
+                "Ils se créent tous seuls"
+            ],
+            "correctAnswer": 2,
+            "explanation": "Les cookies peuvent être créés à la fois en front-end avec JavaScript avec document.cookie et en back-end en les renvoyant dans les en-têtes HTTP depuis le serveur."
+        },
+        {
+            "question": "Quelle est la durée de conservation des cookies ?",
+            "options": [
+                "Il n'y a pas de limite",
+                "Il n'y a pas de limite, mais les navigateurs limitent à 400 jours",
+                "Un an selon la CNIL",
+                "3 mois au réfrigérateur"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Techniquement on peut placer une date d'expiration dans le futur, mais les navigateurs limitent la durée de vie des cookies à 400 jours."
+        },
+        {
+            "question": "Quelle est la taille maximale d'un cookie ?",
+            "options": [
+                "4 Ko",
+                "4 Mo",
+                "400 grammes (pour Lisa)"
+            ],
+            "correctAnswer": 0,
+            "explanation": "4096 octets, soit 4 Ko"
+        },
+        {
+            "question": "Un cookie est-il lié à un seul nom de domaine ?",
+            "options": [
+                "Non, on peut configurer une liste de domaines différents",
+                "Oui, par sécurité",
+                "Oui, mais on peut le partager avec des sous-domaines"
+            ],
+            "correctAnswer": 2,
+            "explanation": "En précisant le domaine lors de la création du cookie, on peut le partager avec des sous-domaines."
+        },
+        {
+            "question": "Quel est le paramètre qui empêche un cookie d'être lu par JavaScript ?",
+            "options": [
+                "Samesite",
+                "HttpOnly",
+                "Secure",
+                "noJS"
+            ],
+            "correctAnswer": 1,
+            "explanation": "HttpOnly le rend plus sécurisé contre les attaques XSS."
+        }
+    ]
+}

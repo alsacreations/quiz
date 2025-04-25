@@ -330,6 +330,9 @@
     </div>
 
     <script>
+
+        const dataFile = 'cookies.json';
+
         // Function précédentes et setup du confetti
         function fireConfetti() {
             const duration = 3000;
@@ -360,274 +363,19 @@
             }, 250);
         }
 
-        const quizData = {
-            questions: [
-                {
-                    "question": "Quel est le rôle principal du W3C ?",
-                    "options": [
-                        "Réguler l'accès à Internet",
-                        "Définir des standards pour le web",
-                        "Créer des navigateurs web",
-                        "Contrôler les noms de domaine"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit des standards pour le web."
-                },
-                {
-                    "question": "Quel organisme est chargé de gérer les noms de domaine sur Internet ?",
-                    "options": [
-                        "W3C",
-                        "ICANN",
-                        "IETF",
-                        "ISO"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "L'ICANN (Internet Corporation for Assigned Names and Numbers) est l'organisme chargé de gérer les noms de domaine sur Internet."
-                },
-                {
-                    "question": "Qui développe le DOM (Document Object Model) ?",
-                    "options": [
-                        "Mozilla",
-                        "WhatWG",
-                        "W3C",
-                        "DOM Consortium"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "Le DOM (Document Object Model) a été développé par le WhatWG (Web Hypertext Application Technology Working Group)"
-                },
-                {
-                    "question": "Quelle organisation définit les standards pour les feuilles de style CSS ?",
-                    "options": [
-                        "W3C",
-                        "IETF",
-                        "ICANN",
-                        "ISO"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit les standards pour les feuilles de style CSS."
-                },
-                {
-                    "question": "Qui travaille sur la sécurité des applications web ?",
-                    "options": [
-                        "La SEC",
-                        "OWASP",
-                        "ANSI (American National Standards Institute)",
-                        "La NSA"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "OWASP (Open Web Application Security Project) – Organisation qui travaille sur la sécurité des applications web notamment avec le Top 10 des vulnérabilités."
-                },
-                {
-                    "question": "Qui maintient le standard JavaScript ?",
-                    "options": [
-                        "WhatWG",
-                        "W3C",
-                        "ECMA",
-                        "Mosaic"
-                    ],
-                    "correctAnswer": 2,
-                    "explanation": "L'ECMA (European Computer Manufacturers Association) est l'organisme qui maintient le standard JavaScript."
-                },
-                {
-                    "question": "Qui a inventé JSON ?",
-                    "options": [
-                        "Jean-Olivier Sébastien Nathan",
-                        "Michael Douglas",
-                        "Douglas Reynholm",
-                        "Douglas Crockford"
-                    ],
-                    "correctAnswer": 3,
-                    "explanation": "JSON (JavaScript Object Notation) a été inventé par Douglas Crockford au début des années 2000."
-                },
-                {
-                    "question": "Qui développe les standards techniques HTTP, TLS, IP, SMTP, DNS ?",
-                    "options": [
-                        "W3C",
-                        "IETF",
-                        "ECMA",
-                        "ISO"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "L'IETF (Internet Engineering Task Force) est l'organisme qui développe les standards techniques pour Internet"
-                },
-                {
-                    "question": "Qui a fondé le W3C ?",
-                    "options": [
-                        "Steve Jobs",
-                        "Chuck Norris",
-                        "Kevin McCulkin",
-                        "Tim Berners-Lee"
-                    ],
-                    "correctAnswer": 3,
-                    "explanation": "Physicien et informaticien britannique, principal inventeur du World Wide Web alors qu'il travaillait à l'Organisation européenne pour la recherche nucléaire au tournant des années 1990."
-                },
-                {
-                    "question": "Sous quelle forme sont publiés les standards de l'IETF ?",
-                    "options": [
-                        "RFC",
-                        "Markdown",
-                        "Word",
-                        "Panama Papers"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "Les standards de l'IETF sont publiés sous forme de RFC (Request for Comments)"
-                },
-                {
-                    "question": "Qui développe l'API Fetch ?",
-                    "options": [
-                        "Mozilla",
-                        "WhatWG",
-                        "Network Working Group",
-                        "Les amis de la Fecht"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "L'API Fetch a été développée par le WhatWG (Web Hypertext Application Technology Working Group)"
-                },
-                {
-                    "question": "Qui alloue les blocs d'adresses IP ?",
-                    "options": [
-                        "IANA",
-                        "R.I.P.",
-                        "IP Allocators Inc.",
-                        "IPv6 Bureau"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "IANA (Internet Assigned Numbers Authority) – Responsable de la gestion des adresses IP, des numéros de ports et des paramètres de protocole."
-                },
-                {
-                    "question": "Qui régit les emojis 😺 ?",
-                    "options": [
-                        "NTT Docomo",
-                        "Emo Group",
-                        "Unicode Consortium",
-                        "Smiley Inc."
-                    ],
-                    "correctAnswer": 2,
-                    "explanation": "Les emojis sont régis par le Unicode Consortium, qui définit les standards pour les caractères Unicode."
-                },
-                {
-                    "question": "Qui maintient et développe le format WebP ?",
-                    "options": [
-                        "WebPicture Consortium",
-                        "W3C",
-                        "JPEG Committee",
-                        "Google"
-                    ],
-                    "correctAnswer": 3,
-                    "explanation": "Google est l'entreprise qui a développé le format WebP, un format d'image plus léger et plus performant que le JPEG."
-                },
-                {
-                    "question": "Qui maintient et développe le format AVIF ?",
-                    "options": [
-                        "AV1 Association Working Group (AWS, Facebook, Disney)",
-                        "AOMedia (Google, Mozilla, Microsoft, Netflix, Amazon...)",
-                        "MPEG L.A. (FBI, CIA, NSA)",
-                        "Oracle"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "AOMedia (Alliance for Open Media) est le consortium qui maintient et développe le format AVIF, un format d'image basé sur le codec AV1."
-                },
-                {
-                    "question": "Quelle est la mission principale de l'Afnic ?",
-                    "options": [
-                        "Gérer l’attribution des adresses IP en France",
-                        "Développer des logiciels open-source",
-                        "Administrer et gérer les noms de domaine en .fr",
-                        "Réguler les télécommunications en France"
-                    ],
-                    "correctAnswer": 2,
-                    "explanation": "L'Afnic (Association Française pour le Nommage Internet en Coopération) est l'organisme chargé de l'administration et de la gestion des noms de domaine en .fr."
-                },
-                {
-                    "question": "Qui édite les WCAG ?",
-                    "options": [
-                        "La WAI (Web Accessibility Initiative)",
-                        "L'AAA (American Association of Accessibility)",
-                        "Le WhatWG",
-                        "Le RGAA"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "Les spécifications WCAG (Web Content Accessibility Guidelines) sont éditées par le W3C (World Wide Web Consortium), à travers son groupe de travail WAI (Web Accessibility Initiative)."
-                },
-                {
-                    "question": "Quels organismes développent des normes pour le cryptage et la sécurité des communications sur Internet ?",
-                    "options": [
-                        "HTTPS Working Group et IEEE",
-                        "ISOsec et W3C",
-                        "CryptAlliance (Google, Facebook, Amazon et NSA)",
-                        "IETF et NIST"
-                    ],
-                    "correctAnswer": 3,
-                    "explanation": "L'IETF (Internet Engineering Task Force) et le NIST (National Institute of Standards and Technology) sont des organismes qui développent des normes pour le cryptage et la sécurité des communications sur Internet."
-                },
-                {
-                    "question": "Qui a inventé TCP/IP ?",
-                    "options": [
-                        "Tim Cerners-Pee et Isabelle Prank",
-                        "Brendan Eich",
-                        "Vinton Cerf et Robert Kahn",
-                        "Personne, c'est venu tout seul"
-                    ],
-                    "correctAnswer": 2,
-                    "explanation": "Vinton Cerf et Robert Kahn dans les années 1970 ont conçu ce protocole pour permettre l'interconnexion de réseaux hétérogènes, posant ainsi les bases d'Internet."
-                },
-                {
-                    "question": "Qui établit les standards internationaux des télécommunications 4G/5G, VoIP, fibre optique ?",
-                    "options": [
-                        "C.E.R.N. (Council of Electronic Research Network)",
-                        "I.T.U. (Union Internationale des Télécommunications)",
-                        "P.R.O.U.T. (Protocole Réseau d'Organisation Universelle des Télécommunications)",
-                        "P.T.T. (Postes, Télégraphes et Téléphones)"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "L'Union Internationale des Télécommunications (ITU) est une agence spécialisée des Nations Unies qui coordonne les télécommunications internationales."
-                },
-                {
-                    "question": "Qui développe les standards Ethernet et WiFi ?",
-                    "options": [
-                        "IEEE",
-                        "IETF Network Group",
-                        "ECMA",
-                        "NCSA"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "L'IEEE (Institute of Electrical and Electronics Engineers) est l'organisme qui développe les standards Ethernet et WiFi."
-                },
-                {
-                    "question": "Quel protocole permet la résolution des noms de domaine en adresses IP ?",
-                    "options": [
-                        "DNS",
-                        "FTP",
-                        "DHCP",
-                        "SNMP"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "Le protocole DNS (Domain Name System) permet la résolution des noms de domaine en adresses IP."
-                },
-                {
-                    "question": "Quel protocole est utilisé pour l'envoi d'e-mails ?",
-                    "options": [
-                        "HTTP",
-                        "SMTP",
-                        "DNS",
-                        "IMAP"
-                    ],
-                    "correctAnswer": 1,
-                    "explanation": "Le protocole SMTP (Simple Mail Transfer Protocol) est utilisé pour l'envoi d'e-mails."
-                },
-                {
-                    "question": "Quelle est la principale différence entre TCP et UDP ?",
-                    "options": [
-                        "TCP est orienté connexion, UDP ne l'est pas",
-                        "UDP est plus sécurisé que TCP",
-                        "TCP est utilisé pour la diffusion en continu, UDP non",
-                        "UDP garantit la livraison des paquets alors que TCP ne le fait pas"
-                    ],
-                    "correctAnswer": 0,
-                    "explanation": "La principale différence entre TCP (Transmission Control Protocol) et UDP (User Datagram Protocol) est que TCP est orienté connexion, ce qui signifie qu'il garantit la livraison des paquets dans l'ordre et sans erreur, tandis qu'UDP ne le fait pas."
-                }
-            ]
-        };
+        const quizData = {}
+
+        // Charger les données du quiz depuis le fichier JSON
+        fetch(dataFile)
+            .then(response => response.json())
+            .then(data => {
+                quizData.questions = data.questions;
+                /*document.querySelector('.intro-container').style.display = 'none';
+                document.querySelector('#question-container').style.display = 'block';
+                document.querySelector('#navigation').style.display = 'flex';
+                displayQuestion();*/
+            })
+            .catch(error => console.error('Error loading quiz data:', error));
 
         let currentQuestion = -1;
         let answeredQuestions = new Set();
