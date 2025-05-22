@@ -16,6 +16,7 @@
             width: 100vw;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
         .final .question-container,
@@ -42,6 +43,18 @@
             color: white;
             border-radius: 12px;
             padding: 1rem;
+        }
+
+        #deco {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(50%);
+            font-size: 50vw;
+            z-index: -10;
+            opacity: 0.5;
+            white-space: nowrap;
+            transition: all 1s ease;
         }
 
         /* Intro */
@@ -329,6 +342,8 @@
         <button id="next-button" class="nav-button">Question suivante</button>
     </div>
 
+    <div id="deco"></div>
+
     <script>
 
         const dataFile = 'cookies.json';
@@ -370,6 +385,7 @@
             .then(response => response.json())
             .then(data => {
                 quizData.questions = data.questions;
+                document.getElementById('deco').textContent = data.deco;
                 /*document.querySelector('.intro-container').style.display = 'none';
                 document.querySelector('#question-container').style.display = 'block';
                 document.querySelector('#navigation').style.display = 'flex';
