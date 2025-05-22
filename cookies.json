@@ -12,6 +12,17 @@
             "explanation": "Les cookies peuvent être créés à la fois en front-end avec JavaScript avec document.cookie et en back-end en les renvoyant dans les en-têtes HTTP depuis le serveur."
         },
         {
+            "question": "Quelle en-tête HTTP est utilisée pour envoyer un cookie depuis le serveur ?",
+            "options": [
+                "Set-Cookie",
+                "Cookie-Client",
+                "Send-Cookie",
+                "Authorization"
+            ],
+            "correctAnswer": 0,
+            "explanation": ""
+        },
+        {
             "question": "Quelle est la durée de conservation des cookies ?",
             "options": [
                 "Il n'y a pas de limite",
@@ -45,13 +56,76 @@
         {
             "question": "Quel est le paramètre qui empêche un cookie d'être lu par JavaScript ?",
             "options": [
-                "Samesite",
+                "SameSite=Strict",
                 "HttpOnly",
                 "Secure",
                 "noJS"
             ],
             "correctAnswer": 1,
             "explanation": "HttpOnly le rend plus sécurisé contre les attaques XSS."
+        },
+        {
+            "question": "Quelle directive permet de limiter son envoi aux connexions HTTPS ?",
+            "options": [
+                "SameSite=Strict",
+                "HttpOnly",
+                "Secure",
+                "noJS"
+            ],
+            "correctAnswer": 2,
+            "explanation": "Lorsqu'il est créé avec le paramètre Secure, le cookie n'est envoyé que sur des connexions HTTPS."
+        },
+        {
+            "question": "Lequel de ces cookies persiste après la fermeture du navigateur ?",
+            "options": [
+                "Cookie de session JWT",
+                "Cookie avec Expires ou Max-Age défini",
+                "Cookie avec Secure",
+                "Cookie envoyé avec Rassis=true"
+            ],
+            "correctAnswer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "Les cookies peuvent-ils être utilisés pour suivre les utilisateurs à travers différents sites web ?",
+            "options": [
+                "Oui, ce sont les cookies tiers (third-party cookies)",
+                "Non, les cookies sont limités à un seul domaine",
+                "Seulement si l'utilisateur donne son consentement explicite à chaque site",
+                "Uniquement avec des extensions de navigateur spécifiques"
+            ],
+            "correctAnswer": 0,
+            "explanation": "Les cookies tiers sont placés par un domaine différent de celui que l'utilisateur visite et sont utilisés pour le suivi publicitaire et l'analyse cross-site."
+        },
+        {
+            "question": "Les navigateurs bloquent-ils les cookies tiers ?",
+            "options": [
+                "Non c'est impossible de les désactiver",
+                "Seulement Firefox en mode incognito",
+                "Tous le permettent (Firefox, Brave, etc), sauf Chrome"
+            ],
+            "correctAnswer": 2,
+            "explanation": "Google est revenu en arrière sur ses annonces."
+        },
+        {
+            "question": "S'il y a un (trop) grand nombre de cookies sur un site, quel effet ?",
+            "options": [
+                "Le navigateur refuse toute nouvelle connexion sécurisée (HTTPS)",
+                "C'est plus lent car la taille des en-têtes HTTP pour chaque requête augmente",
+                "Les plus anciens sont remplacés par les plus récents et on perd la session"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Tous les cookies associés à un domaine sont envoyés avec chaque requête HTTP vers ce domaine. Si le nombre ou la taille totale des cookies devient important, cela alourdit les en-têtes HTTP."
+        },
+        {
+            "question": "Qu'est-ce qu'un cookie zombie (ou evercookie) ?",
+            "options": [
+                "Il est trop vieux et n'est plus commestible",
+                "Il est difficile à supprimer car il utilise plusieurs techniques de stockage",
+                "Il n'est jamais lu parce qu'il est trop gros en mémoire"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Ils utilisent diverses techniques pour persister, se recréant même après une suppression standard des cookies du navigateur"
         }
     ]
 }
