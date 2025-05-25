@@ -456,17 +456,19 @@
             const options = document.querySelectorAll('.option');
             const feedback = document.getElementById('feedback');
             const explanation = document.getElementById('explanation');
-            const isCorrect = selectedIndex === question.correctAnswer;
+            const isCorrect = selectedIndex === (question.correctAnswer - 1);
 
             if (isCorrect) {
                 score++;
                 updateScore();
             }
 
+            // Affiche le statut correct/incorrect de la réponse choisie
             options[selectedIndex].classList.add(
                 isCorrect ? 'correct' : 'incorrect'
             );
-            options[question.correctAnswer].classList.add('correct');
+            // Affiche le statut correct de la bonne réponse
+            options[question.correctAnswer - 1].classList.add('correct');
 
             // Afficher le feedback
             feedback.classList.remove('hidden');

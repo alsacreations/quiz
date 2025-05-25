@@ -9,7 +9,7 @@
                 "En front et en back",
                 "Ils se créent tous seuls"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "Les cookies peuvent être créés à la fois en front-end avec JavaScript avec document.cookie et en back-end en les renvoyant dans les en-têtes HTTP depuis le serveur."
         },
         {
@@ -20,7 +20,7 @@
                 "Send-Cookie",
                 "Authorization"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": ""
         },
         {
@@ -31,7 +31,7 @@
                 "Un an selon la CNIL",
                 "3 mois au réfrigérateur"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Techniquement on peut placer une date d'expiration dans le futur, mais les navigateurs limitent la durée de vie des cookies à 400 jours."
         },
         {
@@ -41,7 +41,7 @@
                 "4 Mo",
                 "400 grammes (pour Lisa)"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "4096 octets, soit 4 Ko"
         },
         {
@@ -51,7 +51,7 @@
                 "Oui, par sécurité",
                 "Oui, mais on peut le partager avec des sous-domaines"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "En précisant le domaine lors de la création du cookie, on peut le partager avec des sous-domaines."
         },
         {
@@ -62,7 +62,7 @@
                 "Secure",
                 "noJS"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "HttpOnly le rend plus sécurisé contre les attaques XSS."
         },
         {
@@ -73,7 +73,7 @@
                 "Secure",
                 "noJS"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "Lorsqu'il est créé avec le paramètre Secure, le cookie n'est envoyé que sur des connexions HTTPS."
         },
         {
@@ -84,7 +84,7 @@
                 "Cookie avec Secure",
                 "Cookie envoyé avec Rassis=true"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": ""
         },
         {
@@ -95,7 +95,7 @@
                 "Seulement si l'utilisateur donne son consentement explicite à chaque site",
                 "Uniquement avec des extensions de navigateur spécifiques"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "Les cookies tiers sont placés par un domaine différent de celui que l'utilisateur visite et sont utilisés pour le suivi publicitaire et l'analyse cross-site."
         },
         {
@@ -105,7 +105,7 @@
                 "Seulement Firefox en mode incognito",
                 "Tous le permettent (Firefox, Brave, etc), sauf Chrome"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "Google est revenu en arrière sur ses annonces."
         },
         {
@@ -115,7 +115,7 @@
                 "C'est plus lent car la taille des en-têtes HTTP pour chaque requête augmente",
                 "Les plus anciens sont remplacés par les plus récents et on perd la session"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Tous les cookies associés à un domaine sont envoyés avec chaque requête HTTP vers ce domaine. Si le nombre ou la taille totale des cookies devient important, cela alourdit les en-têtes HTTP."
         },
         {
@@ -125,7 +125,7 @@
                 "Il est difficile à supprimer car il utilise plusieurs techniques de stockage",
                 "Il n'est jamais lu parce qu'il est trop gros en mémoire"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Ils utilisent diverses techniques pour persister, se recréant même après une suppression standard des cookies du navigateur"
         }
     ]

@@ -8,7 +8,7 @@
                 "Créer des navigateurs web",
                 "Contrôler les noms de domaine"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit des standards pour le web."
         },
         {
@@ -19,7 +19,7 @@
                 "IETF",
                 "ISO"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "L'ICANN (Internet Corporation for Assigned Names and Numbers) est l'organisme chargé de gérer les noms de domaine sur Internet."
         },
         {
@@ -30,7 +30,7 @@
                 "W3C",
                 "DOM Consortium"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Le DOM (Document Object Model) a été développé par le WhatWG (Web Hypertext Application Technology Working Group)"
         },
         {
@@ -41,7 +41,7 @@
                 "ICANN",
                 "ISO"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "Le W3C (World Wide Web Consortium) est l'organisme qui définit les standards pour les feuilles de style CSS."
         },
         {
@@ -52,7 +52,7 @@
                 "ANSI (American National Standards Institute)",
                 "La NSA"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "OWASP (Open Web Application Security Project) – Organisation qui travaille sur la sécurité des applications web notamment avec le Top 10 des vulnérabilités."
         },
         {
@@ -63,7 +63,7 @@
                 "ECMA",
                 "Mosaic"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "L'ECMA (European Computer Manufacturers Association) est l'organisme qui maintient le standard JavaScript."
         },
         {
@@ -74,7 +74,7 @@
                 "Douglas Reynholm",
                 "Douglas Crockford"
             ],
-            "correctAnswer": 3,
+            "correctAnswer": 4,
             "explanation": "JSON (JavaScript Object Notation) a été inventé par Douglas Crockford au début des années 2000."
         },
         {
@@ -85,7 +85,7 @@
                 "ECMA",
                 "ISO"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "L'IETF (Internet Engineering Task Force) est l'organisme qui développe les standards techniques pour Internet"
         },
         {
@@ -96,7 +96,7 @@
                 "Kevin McCulkin",
                 "Tim Berners-Lee"
             ],
-            "correctAnswer": 3,
+            "correctAnswer": 4,
             "explanation": "Physicien et informaticien britannique, principal inventeur du World Wide Web alors qu'il travaillait à l'Organisation européenne pour la recherche nucléaire au tournant des années 1990."
         },
         {
@@ -107,7 +107,7 @@
                 "Word",
                 "Panama Papers"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "Les standards de l'IETF sont publiés sous forme de RFC (Request for Comments)"
         },
         {
@@ -118,7 +118,7 @@
                 "Network Working Group",
                 "Les amis de la Fecht"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "L'API Fetch a été développée par le WhatWG (Web Hypertext Application Technology Working Group)"
         },
         {
@@ -129,7 +129,7 @@
                 "IP Allocators Inc.",
                 "IPv6 Bureau"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "IANA (Internet Assigned Numbers Authority) – Responsable de la gestion des adresses IP, des numéros de ports et des paramètres de protocole."
         },
         {
@@ -140,7 +140,7 @@
                 "Unicode Consortium",
                 "Smiley Inc."
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "Les emojis sont régis par le Unicode Consortium, qui définit les standards pour les caractères Unicode."
         },
         {
@@ -162,7 +162,7 @@
                 "MPEG L.A. (FBI, CIA, NSA)",
                 "Oracle"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "AOMedia (Alliance for Open Media) est le consortium qui maintient et développe le format AVIF, un format d'image basé sur le codec AV1."
         },
         {
@@ -173,7 +173,7 @@
                 "Administrer et gérer les noms de domaine en .fr",
                 "Réguler les télécommunications en France"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "L'Afnic (Association Française pour le Nommage Internet en Coopération) est l'organisme chargé de l'administration et de la gestion des noms de domaine en .fr."
         },
         {
@@ -184,7 +184,7 @@
                 "Le WhatWG",
                 "Le RGAA"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "Les spécifications WCAG (Web Content Accessibility Guidelines) sont éditées par le W3C (World Wide Web Consortium), à travers son groupe de travail WAI (Web Accessibility Initiative)."
         },
         {
@@ -195,7 +195,7 @@
                 "CryptAlliance (Google, Facebook, Amazon et NSA)",
                 "IETF et NIST"
             ],
-            "correctAnswer": 3,
+            "correctAnswer": 4,
             "explanation": "L'IETF (Internet Engineering Task Force) et le NIST (National Institute of Standards and Technology) sont des organismes qui développent des normes pour le cryptage et la sécurité des communications sur Internet."
         },
         {
@@ -206,7 +206,7 @@
                 "Vinton Cerf et Robert Kahn",
                 "Personne, c'est venu tout seul"
             ],
-            "correctAnswer": 2,
+            "correctAnswer": 3,
             "explanation": "Vinton Cerf et Robert Kahn dans les années 1970 ont conçu ce protocole pour permettre l'interconnexion de réseaux hétérogènes, posant ainsi les bases d'Internet."
         },
         {
@@ -217,7 +217,7 @@
                 "P.R.O.U.T. (Protocole Réseau d'Organisation Universelle des Télécommunications)",
                 "P.T.T. (Postes, Télégraphes et Téléphones)"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "L'Union Internationale des Télécommunications (ITU) est une agence spécialisée des Nations Unies qui coordonne les télécommunications internationales."
         },
         {
@@ -228,7 +228,7 @@
                 "ECMA",
                 "NCSA"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "L'IEEE (Institute of Electrical and Electronics Engineers) est l'organisme qui développe les standards Ethernet et WiFi."
         },
         {
@@ -239,7 +239,7 @@
                 "DHCP",
                 "SNMP"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "Le protocole DNS (Domain Name System) permet la résolution des noms de domaine en adresses IP."
         },
         {
@@ -250,7 +250,7 @@
                 "DNS",
                 "IMAP"
             ],
-            "correctAnswer": 1,
+            "correctAnswer": 2,
             "explanation": "Le protocole SMTP (Simple Mail Transfer Protocol) est utilisé pour l'envoi d'e-mails."
         },
         {
@@ -261,7 +261,7 @@
                 "TCP est utilisé pour la diffusion en continu, UDP non",
                 "UDP garantit la livraison des paquets alors que TCP ne le fait pas"
             ],
-            "correctAnswer": 0,
+            "correctAnswer": 1,
             "explanation": "La principale différence entre TCP (Transmission Control Protocol) et UDP (User Datagram Protocol) est que TCP est orienté connexion, ce qui signifie qu'il garantit la livraison des paquets dans l'ordre et sans erreur, tandis qu'UDP ne le fait pas."
         }
     ]

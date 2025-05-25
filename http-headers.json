@@ -8,7 +8,7 @@
         "Contrôler les accès entre domaines différents",
         "Mesurer la vitesse de téléversement des fichiers chats"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le header 'Content-Type' indique au client le type MIME du contenu retourné (comme application/json ou text/html) et éventuellement son encodage, permettant au navigateur de traiter correctement les données."
     },
     {
@@ -19,7 +19,7 @@
         "D'autoriser uniquement certains navigateurs à accéder au contenu",
         "De transformer le contenu en version compatible pour les machines à café connectées"
       ],
-      "correctAnswer": 0,
+      "correctAnswer": 1,
       "explanation": "Le header 'Cache-Control' définit comment, où et pendant combien de temps les réponses peuvent être mises en cache, avec des directives comme 'max-age', 'no-cache', ou 'private'."
     },
     {
@@ -30,7 +30,7 @@
         "À fournir les informations d'identification pour l'authentification HTTP",
         "À donner l'autorisation aux pigeons voyageurs de transporter les paquets HTTP"
       ],
-      "correctAnswer": 2,
+      "correctAnswer": 3,
       "explanation": "Le header 'Authorization' contient les informations d'identification (comme un token Bearer ou des identifiants en Basic Auth) permettant l'authentification auprès du serveur."
     },
     {
@@ -41,7 +41,7 @@
         "Désigner l'agent de sécurité chargé de surveiller les cookies malveillants",
         "Identifier le navigateur, système d'exploitation ou application qui fait la requête"
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 4,
       "explanation": "Le header 'User-Agent' contient une chaîne de caractères identifiant le client qui effectue la requête (navigateur, robot, application mobile), permettant aux serveurs d'adapter leur réponse selon le client."
     },
     {
@@ -52,7 +52,7 @@
         "Spécifie les heures d'accès autorisées",
         "Permet aux extraterrestres d'accéder à votre site web depuis leur planète"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le header 'Access-Control-Allow-Origin' est utilisé dans le cadre de CORS (Cross-Origin Resource Sharing) pour indiquer quels domaines sont autorisés à accéder aux ressources du serveur depuis un navigateur."
     },
     {
@@ -63,7 +63,7 @@
         "Envoyer un cookie du serveur vers le client",
         "Proposer des biscuits virtuels aux visiteurs affamés"
       ],
-      "correctAnswer": 2,
+      "correctAnswer": 3,
       "explanation": "Le header 'Set-Cookie' est utilisé par le serveur pour envoyer un cookie au navigateur client, qui le stockera et le renverra à chaque requête ultérieure vers le même domaine, permettant ainsi de maintenir un état ou une session."
     },
     {
@@ -74,7 +74,7 @@
         "Spécifier la durée maximale d'affichage du contenu",
         "Mesurer la longueur des câbles internet utilisés pour la transmission"
       ],
-      "correctAnswer": 0,
+      "correctAnswer": 1,
       "explanation": "Le header 'Content-Length' spécifie la taille en octets du corps de la réponse, ce qui permet au client de savoir combien de données il doit recevoir et d'afficher une barre de progression précise."
     },
     {
@@ -85,7 +85,7 @@
         "Définir l'encodage du texte de la page",
         "Attribuer un numéro d'identification aux joueurs d'un jeu de cache-cache HTTP"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "L'ETag (Entity Tag) est un identifiant unique attribué à une version spécifique d'une ressource. Il permet au navigateur de vérifier si sa version en cache est toujours à jour en comparant les ETags lors d'une requête conditionnelle."
     },
     {
@@ -96,7 +96,7 @@
         "Que les données voyagent uniquement par des voies de circulation prioritaires",
         "Que le site ne doit être accédé qu'en HTTPS pour une période spécifiée"
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 4,
       "explanation": "Le header 'Strict-Transport-Security' (HSTS) indique aux navigateurs d'accéder au site uniquement via HTTPS pendant une durée spécifiée, même si l'utilisateur tente d'utiliser HTTP, renforçant ainsi la sécurité contre les attaques de type 'man-in-the-middle'."
     },
     {
@@ -107,7 +107,7 @@
         "À définir l'emplacement des fichiers sur le serveur",
         "À révéler la position secrète du trésor caché dans les profondeurs d'Internet"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le header 'Location' est utilisé avec les codes de statut 3xx (redirection) pour indiquer au client l'URL vers laquelle il doit se rediriger automatiquement, permettant ainsi des redirections temporaires ou permanentes."
     },
     {
@@ -118,7 +118,7 @@
         "Pour simplifier la configuration des firewalls",
         "Pour que le serveur puisse envoyer des cartes d'invitation aux autres serveurs"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le header 'Host' est devenu obligatoire en HTTP/1.1 car il permet l'hébergement virtuel, où un serveur avec une seule adresse IP peut héberger plusieurs sites web avec différents noms de domaine, le header indiquant quel site spécifique est demandé."
     },
     {
@@ -129,7 +129,7 @@
         "Indiquer au serveur les types de médias (MIME types) que le client peut traiter",
         "Accepter les cookies virtuels offerts par le serveur gourmand"
       ],
-      "correctAnswer": 2,
+      "correctAnswer": 3,
       "explanation": "Le header 'Accept' permet au client d'informer le serveur des types de contenus (MIME types) qu'il est capable de comprendre, comme 'text/html', 'application/json', etc., ce qui aide le serveur à fournir la représentation la plus appropriée d'une ressource."
     },
     {
@@ -140,7 +140,7 @@
         "En ajoutant des émojis à côté des types les plus appréciés",
         "En utilisant des valeurs 'q' (quality values) pour indiquer les préférences relatives"
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 4,
       "explanation": "Le header 'Accept' utilise des valeurs de qualité 'q' (entre 0 et 1) pour indiquer les préférences relatives entre différents types de médias. Par exemple, 'Accept: text/html,application/xml;q=0.9,image/*;q=0.8' indique une préférence pour HTML, puis XML, puis toutes les images."
     },
     {
@@ -151,7 +151,7 @@
         "Dans le corps (body) de la requête HTTP",
         "Par pigeon voyageur numérique avec un petit sac de cookies virtuels"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le navigateur envoie les cookies au serveur en utilisant le header 'Cookie' dans chaque requête HTTP vers le domaine concerné. Ces cookies ont été préalablement stockés suite à la réception d'un header 'Set-Cookie' dans une réponse précédente du serveur."
     },
     {
@@ -162,7 +162,7 @@
         "'Set-Cookie' définit des cookies persistants, 'Cookie' définit des cookies de session",
         "'Set-Cookie' est pour les biscuits faits maison, 'Cookie' pour les industriels"
       ],
-      "correctAnswer": 0,
+      "correctAnswer": 1,
       "explanation": "Le header 'Set-Cookie' est utilisé par le serveur dans sa réponse pour créer un cookie dans le navigateur, tandis que le header 'Cookie' est utilisé par le client dans ses requêtes ultérieures pour renvoyer ce cookie au serveur."
     },
     {
@@ -173,7 +173,7 @@
         "Diriger les utilisateurs perdus vers un arbitre qui résout les conflits HTTP",
         "Indiquer l'URL de la page web d'où provient la requête actuelle"
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 4,
       "explanation": "Le header 'Referer' (notez la faute d'orthographe historique) indique l'URL de la page à partir de laquelle la requête actuelle a été initiée, ce qui permet au serveur de savoir d'où vient le trafic ou de prévenir certains types de fraudes."
     },
     {
@@ -184,7 +184,7 @@
         "Car il est souvent mal implémenté et cause des fuites de données",
         "Car il informe les aliens de vos habitudes de navigation spatiale"
       ],
-      "correctAnswer": 1,
+      "correctAnswer": 2,
       "explanation": "Le header 'Referer' peut poser des problèmes de confidentialité car si l'URL précédente contient des informations sensibles (comme des identifiants, tokens ou paramètres de recherche), ces informations sont transmises au site de destination via ce header."
     },
     {
@@ -195,7 +195,7 @@
         "En utilisant le header 'Referrer-Policy' dans la réponse du serveur ou une meta tag",
         "En demandant poliment au navigateur de garder le secret avec une danse rituelle"
       ],
-      "correctAnswer": 2,
+      "correctAnswer": 3,
       "explanation": "L'envoi du header 'Referer' peut être contrôlé grâce au header 'Referrer-Policy' (notez l'orthographe correcte) qui définit quand et comment le navigateur doit inclure les informations de référent. Ce contrôle peut aussi se faire via une balise meta dans le HTML."
     }
   ]
