@@ -83,6 +83,7 @@
             .then(data => {
                 quizData.questions = data.questions;
                 document.getElementById('deco').textContent = data.deco;
+                document.title += ' : ' + data.title;
                 /*document.querySelector('.intro-container').style.display = 'none';
                 document.querySelector('#question-container').style.display = 'block';
                 document.querySelector('#navigation').style.display = 'flex';
