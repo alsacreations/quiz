@@ -1,5 +1,38 @@
 {
+  "title": "Les Headers HTTP",
   "questions": [
+    {
+      "question": "Qui a inventé le protocole HTTP ?",
+      "options": [
+        "Tim Berners-Lee",
+        "Vint Cerf",
+        "Marc Andreessen",
+        "Linus Torvalds"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Pourquoi dit-on que HTTP est un protocole sans état ?",
+      "options": [
+        "Parce qu'il est toujours en vacances",
+        "Parce qu'il ne conserve pas d'informations entre les requêtes",
+        "Parce qu'il n'a pas de mémoire vive",
+        "Parce qu'il ne peut pas se souvenir de vos préférences de navigation"
+      ],
+      "correctAnswer": 2,
+      "explanation": "HTTP est considéré comme un protocole sans état car chaque requête est indépendante et le serveur ne conserve pas d'informations sur les requêtes précédentes. Cela signifie que chaque interaction est traitée comme une nouvelle session."
+    },
+    {
+      "question": "Quelle est la différence principale entre les headers 'Cookie' et 'Set-Cookie' ?",
+      "options": [
+        "'Set-Cookie' est envoyé par le serveur au client, 'Cookie' est envoyé par le client au serveur",
+        "Les deux sont identiques mais utilisés dans différentes versions de HTTP",
+        "'Set-Cookie' définit des cookies persistants, 'Cookie' définit des cookies de session",
+        "'Set-Cookie' est pour les biscuits faits maison, 'Cookie' pour les industriels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le header 'Set-Cookie' est utilisé par le serveur dans sa réponse pour créer un cookie dans le navigateur, tandis que le header 'Cookie' est utilisé par le client dans ses requêtes ultérieures pour renvoyer ce cookie au serveur."
+    },
     {
       "question": "Quelle est la fonction principale du header HTTP 'Content-Type' ?",
       "options": [
@@ -12,26 +45,15 @@
       "explanation": "Le header 'Content-Type' indique au client le type MIME du contenu retourné (comme application/json ou text/html) et éventuellement son encodage, permettant au navigateur de traiter correctement les données."
     },
     {
-      "question": "Que permet le header 'Cache-Control' ?",
+      "question": "À quoi sert le header 'Content-Length' ?",
       "options": [
-        "De définir les directives pour les mécanismes de mise en cache",
-        "De contrôler la vitesse de chargement des pages",
-        "D'autoriser uniquement certains navigateurs à accéder au contenu",
-        "De transformer le contenu en version compatible pour les machines à café connectées"
+        "Indiquer la taille en octets du corps de la réponse",
+        "Limiter la longueur du contenu affiché",
+        "Spécifier la durée maximale d'affichage du contenu",
+        "Mesurer la longueur des câbles internet utilisés pour la transmission"
       ],
       "correctAnswer": 1,
-      "explanation": "Le header 'Cache-Control' définit comment, où et pendant combien de temps les réponses peuvent être mises en cache, avec des directives comme 'max-age', 'no-cache', ou 'private'."
-    },
-    {
-      "question": "À quoi sert le header 'Authorization' ?",
-      "options": [
-        "À autoriser les moteurs de recherche à indexer le contenu",
-        "À limiter le nombre de requêtes par seconde",
-        "À fournir les informations d'identification pour l'authentification HTTP",
-        "À donner l'autorisation aux pigeons voyageurs de transporter les paquets HTTP"
-      ],
-      "correctAnswer": 3,
-      "explanation": "Le header 'Authorization' contient les informations d'identification (comme un token Bearer ou des identifiants en Basic Auth) permettant l'authentification auprès du serveur."
+      "explanation": "Le header 'Content-Length' spécifie la taille en octets du corps de la réponse, ce qui permet au client de savoir combien de données il doit recevoir et d'afficher une barre de progression précise."
     },
     {
       "question": "Quelle est la fonction du header 'User-Agent' ?",
@@ -56,28 +78,6 @@
       "explanation": "Le header 'Access-Control-Allow-Origin' est utilisé dans le cadre de CORS (Cross-Origin Resource Sharing) pour indiquer quels domaines sont autorisés à accéder aux ressources du serveur depuis un navigateur."
     },
     {
-      "question": "Quelle est la principale utilité du header 'Set-Cookie' ?",
-      "options": [
-        "Définir les préférences culinaires de l'utilisateur",
-        "Configurer les paramètres de la page web",
-        "Envoyer un cookie du serveur vers le client",
-        "Proposer des biscuits virtuels aux visiteurs affamés"
-      ],
-      "correctAnswer": 3,
-      "explanation": "Le header 'Set-Cookie' est utilisé par le serveur pour envoyer un cookie au navigateur client, qui le stockera et le renverra à chaque requête ultérieure vers le même domaine, permettant ainsi de maintenir un état ou une session."
-    },
-    {
-      "question": "À quoi sert le header 'Content-Length' ?",
-      "options": [
-        "Indiquer la taille en octets du corps de la réponse",
-        "Limiter la longueur du contenu affiché",
-        "Spécifier la durée maximale d'affichage du contenu",
-        "Mesurer la longueur des câbles internet utilisés pour la transmission"
-      ],
-      "correctAnswer": 1,
-      "explanation": "Le header 'Content-Length' spécifie la taille en octets du corps de la réponse, ce qui permet au client de savoir combien de données il doit recevoir et d'afficher une barre de progression précise."
-    },
-    {
       "question": "Quelle est la fonction du header 'ETag' ?",
       "options": [
         "Marquer les pages avec des étiquettes thématiques",
@@ -87,6 +87,16 @@
       ],
       "correctAnswer": 2,
       "explanation": "L'ETag (Entity Tag) est un identifiant unique attribué à une version spécifique d'une ressource. Il permet au navigateur de vérifier si sa version en cache est toujours à jour en comparant les ETags lors d'une requête conditionnelle."
+    },
+    {
+      "question": "Vous connaissez GET et POST. Quel type de requête HTTP n'existe pas ?",
+      "options": [
+        "TRACE",
+        "DELETE",
+        "PUT",
+        "FETCH"
+      ],
+      "correctAnswer": 4
     },
     {
       "question": "Que signifie un header 'Strict-Transport-Security' ?",
@@ -138,32 +148,10 @@
         "En listant les types de média dans l'ordre de préférence strict",
         "En utilisant des astérisques pour les types préférés",
         "En ajoutant des émojis à côté des types les plus appréciés",
-        "En utilisant des valeurs 'q' (quality values) pour indiquer les préférences relatives"
+        "En utilisant des 'q' (quality values) pour indiquer les préférences"
       ],
       "correctAnswer": 4,
       "explanation": "Le header 'Accept' utilise des valeurs de qualité 'q' (entre 0 et 1) pour indiquer les préférences relatives entre différents types de médias. Par exemple, 'Accept: text/html,application/xml;q=0.9,image/*;q=0.8' indique une préférence pour HTML, puis XML, puis toutes les images."
-    },
-    {
-      "question": "Comment un navigateur envoie-t-il un cookie au serveur ?",
-      "options": [
-        "Via le header 'Set-Cookie' dans les requêtes HTTP",
-        "Via le header 'Cookie' dans les requêtes HTTP",
-        "Dans le corps (body) de la requête HTTP",
-        "Par pigeon voyageur numérique avec un petit sac de cookies virtuels"
-      ],
-      "correctAnswer": 2,
-      "explanation": "Le navigateur envoie les cookies au serveur en utilisant le header 'Cookie' dans chaque requête HTTP vers le domaine concerné. Ces cookies ont été préalablement stockés suite à la réception d'un header 'Set-Cookie' dans une réponse précédente du serveur."
-    },
-    {
-      "question": "Quelle est la différence principale entre les headers 'Cookie' et 'Set-Cookie' ?",
-      "options": [
-        "'Set-Cookie' est envoyé par le serveur au client, 'Cookie' est envoyé par le client au serveur",
-        "Les deux sont identiques mais utilisés dans différentes versions de HTTP",
-        "'Set-Cookie' définit des cookies persistants, 'Cookie' définit des cookies de session",
-        "'Set-Cookie' est pour les biscuits faits maison, 'Cookie' pour les industriels"
-      ],
-      "correctAnswer": 1,
-      "explanation": "Le header 'Set-Cookie' est utilisé par le serveur dans sa réponse pour créer un cookie dans le navigateur, tandis que le header 'Cookie' est utilisé par le client dans ses requêtes ultérieures pour renvoyer ce cookie au serveur."
     },
     {
       "question": "À quoi sert le header 'Referer' ?",
