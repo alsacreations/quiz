@@ -29,11 +29,21 @@ body {
     border: 0;
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
-    border-radius: 12px;
+    border-radius: 50%;
     padding: 1rem;
     font-size: inherit;
     &.hidden {
         opacity: 0;
+        display: none;
+    }
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
     }
 }
 
@@ -81,6 +91,13 @@ body {
     color: rgba(159, 0, 232, 1);
     place-self: center;
     z-index: 1337;
+    aspect-ratio: 1;
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: rgba(159, 0, 232, 1);
+        color: white;
+        transform: scale(1.55);
+    }
 }
 
 .question-container {
@@ -116,7 +133,7 @@ body {
 
 .option {
     padding: 15px 25px;
-    background-color: rgba(2, 0, 36, 0.5);
+    background-color: rgba(2, 0, 36, 0.75);
     border: 3px solid rgba(0, 0, 0, 0.25);
     border-radius: 3rem;
     cursor: pointer;
@@ -128,8 +145,8 @@ body {
 }
 
 .option:hover {
-    background-color: rgba(35, 1, 58, 0.83);
-    transform: translateY(-2px);
+    background-color: rgba(35, 1, 58, 0.5);
+    /* transform: translateY(-2px); */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -155,19 +172,19 @@ body {
 
 .nav-button {
     padding: 12px 25px;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: 600;
+    /* font-weight: 600; */
     transition: all 0.3s ease;
     flex: 1;
 }
 
 .nav-button:hover:not(:disabled) {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: 0 5px 15px rgba(107, 76, 245, 0.3);
 }
 
