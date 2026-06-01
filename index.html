@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Host — Organisateur</title>
+<script type="module" src="./src/host.js"></script>
+</head>
+<body>
+
+<header class="host-header">
+  <div class="logo">Quiz Master</div>
+  <div class="conn-status">
+    <div class="conn-dot" id="connDot"></div>
+    <span id="connLabel">Initialisation...</span>
+  </div>
+  <div class="header-right">
+    <button class="btn-fullscreen" id="btnFullscreen" title="Plein écran">⛶</button>
+    <div class="host-badge">Organisateur</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LEFT PANEL -->
+  <aside class="left-panel">
+
+    <!-- Game phase controls -->
+    <div class="game-control">
+      <div class="section-title">Contrôle</div>
+      <span class="phase-badge phase-lobby" id="phaseBadge">Lobby</span>
+      <div class="answer-progress">
+        <div class="progress-label">
+          <span>Réponses reçues</span>
+          <span id="answerCountLabel">0 / 0</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="control-row" style="margin-top:14px">
+        <button class="btn btn-gold btn-lg" id="btnNext">
+          ▶ Lancer question
+        </button>
+        <button class="btn btn-outline" id="btnReveal" disabled>
+          Révéler réponse
+        </button>
+        <button class="btn btn-blue" id="btnScoreboard" disabled>
+          Scores
+        </button>
+      </div>
+    </div>
+
+    <!-- Room card -->
+    <div class="room-card">
+      <div class="section-title">Salle de jeu</div>
+      <div class="room-id-display" id="roomId">—</div>
+      <div id="qrcode"></div>
+      <div class="qr-hint" id="qrHint"></div>
+    </div>
+
+    <!-- Players -->
+    <div class="players-card">
+      <div class="section-title">Participants</div>
+      <div class="players-count"><span id="playerCount">0</span> joueur(s) connecté(s)</div>
+      <div id="playersList"></div>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT PANEL -->
+  <main class="right-panel">
+
+    <!-- Live question preview -->
+    <div class="live-question" id="liveQuestion">
+      <div class="section-title">Question en cours</div>
+      <div class="live-q-text" id="liveQText"></div>
+      <img class="live-q-image" id="liveQImage" src="" alt="">
+      <div class="live-answers" id="liveAnswers"></div>
+    </div>
+
+    <!-- Question editor -->
+    <div class="question-editor" id="editorPanel">
+      <div class="editor-header">
+        <div class="section-title" style="margin:0">Créer une question</div>
+        <div class="question-counter">Question <span id="editingIndex">—</span></div>
+      </div>
+
+      <div class="field-label">Intitulé de la question</div>
+      <textarea id="inputQuestion" placeholder="Quelle est la capitale de l'Australie ?" rows="2"></textarea>
+
+      <div class="field-label">Image (optionnelle)</div>
+      <div class="image-upload-area" id="uploadArea">
+        <input type="file" id="imageInput" accept="image/*">
+        <div class="hint" id="uploadHint">📎 Cliquer ou glisser une image ici</div>
+        <img class="image-preview" id="imagePreview" alt="Aperçu">
+        <button type="button" id="clearImgBtn" style="display:none; margin-top:6px;" class="btn btn-danger" style="font-size:11px; padding:4px 10px">Supprimer l'image</button>
+      </div>
+
+      <div class="field-label">Type de question</div>
+      <select class="correct-select" id="questionType">
+        <option value="qcm">Choix multiples (A, B, C, D)</option>
+        <option value="text">Réponse libre</option>
+      </select>
+
+      <div id="qcmFields">
+      <div class="field-label">Réponses (A, B, C, D)</div>
+      <div class="answers-grid">
+        <div class="answer-field" id="field-A">
+          <span class="answer-letter">A</span>
+          <input type="text" id="ansA" placeholder="Réponse A">
+        </div>
+        <div class="answer-field" id="field-B">
+          <span class="answer-letter">B</span>
+          <input type="text" id="ansB" placeholder="Réponse B">
+        </div>
+        <div class="answer-field" id="field-C">
+          <span class="answer-letter">C</span>
+          <input type="text" id="ansC" placeholder="Réponse C">
+        </div>
+        <div class="answer-field" id="field-D">
+          <span class="answer-letter">D</span>
+          <input type="text" id="ansD" placeholder="Réponse D">
+        </div>
+      </div>
+
+      <div class="field-label">Bonne réponse</div>
+      <select class="correct-select" id="correctAnswer">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+      </div>
+
+      <div id="textFields" style="display:none">
+        <div class="field-label">Réponses acceptées (une par ligne)</div>
+        <textarea id="acceptedAnswers" rows="4" placeholder="Le Roi Lion&#10;Roi Lion&#10;The Lion King"></textarea>
+        <label class="check-row">
+          <input type="checkbox" id="fuzzyMatch" checked>
+          Tolérer les petites fautes de frappe
+        </label>
+        <div class="field-hint">Majuscules, accents, ponctuation et articles / pronoms en début de réponse sont déjà ignorés. La première ligne est affichée comme réponse officielle.</div>
+      </div>
+
+      <div class="editor-actions">
+        <button class="btn btn-gold" id="btnSave">+ Enregistrer la question</button>
+        <button class="btn btn-outline" id="btnClear">Effacer</button>
+      </div>
+    </div>
+
+    <!-- Question list -->
+    <details class="questions-list" id="questionListDetails">
+      <summary style="cursor:pointer; padding:12px 0; font-weight:600; user-select:none">
+        Questions (<span id="totalQ">0</span>)
+      </summary>
+      <div class="q-list-header">
+        <div class="q-list-actions">
+          <button class="btn btn-outline" id="btnNew">Nouvelle</button>
+          <button class="btn btn-outline" id="btnExport">⬇ Exporter</button>
+          <button class="btn btn-outline" id="btnImport">⬆ Importer</button>
+          <input type="file" id="importInput" accept="application/json" style="display:none">
+          <button class="btn btn-danger" id="btnResetAll">🗑 Tout effacer</button>
+        </div>
+      </div>
+      <div id="questionList"></div>
+    </details>
+
+  </main>
+</div>
+
+<!-- Scoreboard modal -->
+<div class="scoreboard-modal" id="scoreModal">
+  <div class="scoreboard-inner">
+    <div class="scoreboard-title" id="scoreTitle">Classement</div>
+    <div id="scoreList"></div>
+    <div class="scoreboard-actions">
+      <button class="btn btn-outline" id="btnCloseScore">Fermer</button>
+      <button class="btn btn-gold btn-lg" id="btnEndGame" style="display:none">
+        🏆 Terminer le quiz
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+</body>
+</html>

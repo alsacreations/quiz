@@ -1,0 +1,32 @@
+@import '@fontsource/cinzel/700.css';
+@import '@fontsource/cinzel/900.css';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow/700.css';
+
+:root {
+  --gold: #f5c842;
+  --gold-dark: #c8a000;
+  --gold-light: #ffe480;
+  --blue-deep: #0a0f2e;
+  --blue-mid: #0d1a4a;
+  --blue-panel: #111c55;
+  --blue-bright: #1a3db5;
+  --blue-glow: #2a5ff5;
+  --blue-A: #1a3db5;
+  --blue-B: #153498;
+  --blue-C: #0f2a7c;
+  --blue-D: #0a2062;
+  --white: #ffffff;
+  --silver: #c8d0e0;
+  --correct: #2ed573;
+  --wrong: #ff4757;
+  --neutral: #4a90d9;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

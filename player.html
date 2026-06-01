@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Quiz — Joueur</title>
+<script type="module" src="./src/player.js"></script>
+</head>
+<body>
+
+<div class="conn-bar connecting" id="connBar"></div>
+
+<!-- JOIN SCREEN -->
+<div class="screen active" id="screenJoin">
+  <div class="join-logo">Quiz Master</div>
+  <div class="join-sub">Qui veut gagner des points ?</div>
+
+  <div class="join-card">
+    <div class="field-label">Votre prénom</div>
+    <input class="join-input" type="text" id="inputName" placeholder="Ex: Georgette" maxlength="20" autocomplete="off">
+
+    <div class="field-label">Code de la salle</div>
+    <input class="join-input" type="text" id="inputRoomId" placeholder="QUIZ-XXXXXX" maxlength="20" autocomplete="off">
+
+    <button class="btn-join" id="btnJoin">Rejoindre</button>
+    <div class="connect-status" id="connectStatus"></div>
+  </div>
+</div>
+
+<!-- LOBBY SCREEN -->
+<div class="screen" id="screenLobby">
+  <div class="lobby-icon">🎯</div>
+  <div class="lobby-title">Vous êtes dans la salle !</div>
+  <div class="lobby-name" id="lobbyName"></div>
+  <div class="lobby-wait">En attente du démarrage...</div>
+  <div class="score-chip">Score : <span id="lobbyScore">0</span> pts</div>
+</div>
+
+<!-- QUESTION SCREEN -->
+<div class="screen" id="screenQuestion">
+  <div class="question-header">
+    <div class="q-meta">
+      <span class="q-number" id="qNumber">Question 1</span>
+      <span class="my-score-badge">Score : <span id="qScore">0</span> pts</span>
+    </div>
+    <div class="question-text" id="questionText"></div>
+    <img class="question-image" id="questionImage" src="" alt="">
+  </div>
+  <div class="answers-container" id="answersContainer"></div>
+  <form class="text-answer" id="textAnswer" hidden autocomplete="off">
+    <input class="join-input" type="text" id="textInput" placeholder="Votre réponse" autocomplete="off" autocapitalize="sentences" enterkeyhint="send">
+    <button class="btn-join" type="submit" id="btnSendText">Valider</button>
+    <div class="text-feedback" id="textFeedback" aria-live="polite"></div>
+  </form>
+</div>
+
+<!-- FINAL SCREEN -->
+<div class="screen" id="screenFinal">
+  <div class="final-podium" id="finalPodium"></div>
+</div>
+
+<!-- Result overlay -->
+<div class="result-overlay" id="resultOverlay">
+  <div class="result-card">
+    <span class="result-icon" id="resultIcon"></span>
+    <div class="result-label" id="resultLabel"></div>
+    <div class="result-rank" id="resultRank"></div>
+    <div class="result-pts" id="resultPts">+0</div>
+    <div class="result-pts-label">points gagnés</div>
+    <div class="result-total">Total : <strong id="resultTotal">0</strong> pts</div>
+    <div class="wait-next">En attente de la réponse...</div>
+  </div>
+</div>
+
+</body>
+</html>
